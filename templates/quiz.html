@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body id="quiz">
+    <h1>Quiz</h1>
+
+    <form action="/quiz" method="POST">
+        <h2>What is your name?</h2>
+        <input type="text" name="username">
+
+        {% for question in questions %}
+
+            <div id="question-container">
+
+                <h2>Question {{ loop.index }}: {{ question.text }}</h2>
+
+                <div class="option-container">
+                    {% for option in question.options %}
+                        <input type="radio" name="{{ question.id }}" value="{{ option }}"> {{ option }}<br>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+        <br>
+        <button type="submit">Submit Answers</button>
+    </form>
+
+    <!-- Footer with information about the author -->
+    <footer>
+        Marek Mackiewicz (mmackiewicz.b2b@gmail.com)
+    </footer>
+</body>
+</html>
